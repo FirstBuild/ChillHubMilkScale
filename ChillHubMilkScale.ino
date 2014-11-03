@@ -6,8 +6,8 @@
 #define DIFF_THRESHOLD 1200  // 2%
 
 boolean doorWasOpen = false;
-unsigned int LO_MEAS[3] = {0};
-unsigned int HI_MEAS[3] = {0};
+unsigned int LO_MEAS[3] = { 0 };
+unsigned int HI_MEAS[3] = { 0 };
 
 /* 
  * we find the full weight on each sensor by solving the statics problem:
@@ -23,7 +23,7 @@ unsigned int W_MAX[3] = {18908, 12507, 28585};
  
 void setup() {
   // register the name (type) of this device with the chillhub
-  ChillHub.setup("ch-milk-scale", 13);
+  ChillHub.setup("milkscale", 9);
   
   // load FSR limits here
   for (int j = 0; j < 3; j++) {
@@ -68,7 +68,7 @@ void readMilkWeight(unsigned char doorStatus) {
       storeLimits();
     }
     
-    ChillHub.sendU16Msg(0x50, weight/600);
+    ChillHub.sendU16Msg(0x51, weight/600);
   }
   doorWasOpen = doorNowOpen;
 }
